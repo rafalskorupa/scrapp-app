@@ -18,6 +18,7 @@
 
 #ignore idea
 .idea
+/.idea
 
 #ignore test coverage info
 coverage

@@ -6,12 +6,21 @@ RSpec.describe Page, type: :model do
     let(factory){ create(factory)}
   end
 
+  let(:old_record){ create(:old_record, { page: books_hardcover } ) }
+  let(:new_record){ create(:new_record, { page: books_hardcover } ) }
+
+
+
+
+
   INVALID_URLS = ['www.google.pl', 'www.colour.me', 'jenkyyylss']
 
-  describe 'model validations' do
+  describe 'record validations' do
     it { should validate_presence_of :url }
 
     it { should validate_uniqueness_of :url }
+
+    it { should have_many :page_data }
 
     describe 'accepts only  https://www.saxoprint.co.uk/shop/* urls' do
       it do
@@ -59,6 +68,17 @@ RSpec.describe Page, type: :model do
 
 
 
+
+  end
+
+  describe 'page data' do
+    before {
+      [books_hardcover,old_record]
+    }
+
+    it 'have 1 pagedatas' do
+      expect(books_hardcover.page_data.count).to eq 1
+    end
 
   end
 

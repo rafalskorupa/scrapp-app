@@ -1,4 +1,5 @@
 class Page < ApplicationRecord
+  has_many :page_data
   validates :url,
             presence: true,
             uniqueness: true,
