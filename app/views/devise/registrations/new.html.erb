@@ -21,7 +21,23 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
-  <div class="actions">
+    <div class="field row">
+      <div class="four columns">
+        <%= f.radio_button(:level, :normal) %>
+        <%= f.label(:level, "Normal") %>
+      </div>
+      <div class="four columns">
+
+        <%= f.radio_button(:level, :premium) %>
+        <%= f.label(:level, "Premium") %>
+      </div>
+      <div class="four columns">
+        <%= f.radio_button(:level, :premium_plus) %>
+        <%= f.label(:level, "Premium Plus") %>
+      </div>
+    </div>
+
+    <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>

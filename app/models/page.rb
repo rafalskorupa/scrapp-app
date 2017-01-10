@@ -7,7 +7,6 @@ class Page < ApplicationRecord
                       message: "has to be from saxoprint.co.uk/shop/*" }
   after_save :update_data
 
-
   def data
     if page_data.last.created_at < 1.days.ago
       update_data
@@ -32,6 +31,10 @@ class Page < ApplicationRecord
     else
       slug.include?('books') ? 1 : 2
     end
+  end
+
+  def access_level
+    ['Normal', 'Premium', "Premium Plus"][access]
   end
 
   def self.sanitize(url)
