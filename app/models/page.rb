@@ -15,6 +15,24 @@ class Page < ApplicationRecord
   end
 
 
+
+
+  def update_data
+    page_data.create!(Scrapper.new(self.url).data)
+  end
+
+  def slug
+    url.split('/').last
+  end
+
+  def access
+    if slug.length < 15
+      return 0
+    else
+      slug.include?('books') ? 1 : 2
+    end
+  end
+
   def self.sanitize(url)
 
     raise ArgumentError unless url.instance_of?(String)
@@ -27,8 +45,5 @@ class Page < ApplicationRecord
     url
   end
 
-  def update_data
-    page_data.create!(Scrapper.new(self.url).data)
-  end
 
 end

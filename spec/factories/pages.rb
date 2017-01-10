@@ -10,4 +10,8 @@ FactoryGirl.define do
   factory :flyers, class: "Page" do
     url "https://www.saxoprint.co.uk/shop/flyers"
   end
+
+  factory :compliment_slips, class: "Page" do
+    url "https://www.saxoprint.co.uk/shop/compliment-slips"
+  end
 end

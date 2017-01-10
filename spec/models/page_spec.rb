@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Page, type: :model do
 
-  [:books_hardcover, :desk_calendars, :flyers].each do |factory|
+  [:books_hardcover, :desk_calendars, :flyers, :compliment_slips].each do |factory|
     let(factory){ create(factory)}
   end
 
@@ -88,8 +88,31 @@ RSpec.describe Page, type: :model do
 
   end
 
+  describe 'instance methods' do
+    context '#slug' do
+      it 'returns the last part of string after "/"' do
+        expect(books_hardcover.slug).to eq 'books-hardcover'
+      end
+    end
+
+    context '#access' do
+      it 'return 0 for <15 characters slugs' do
+        expect(flyers.access).to eq 0
+        expect(desk_calendars.access).to eq 0
+      end
+
+      it 'return 1 for slug >15 with books word' do
+        expect(books_hardcover.access).to eq 1
+      end
+
+      it 'return 2 for slug >15 without book word' do
+        expect(compliment_slips.access).to eq 2
+      end
+    end
+  end
+
   describe 'factory' do
-    [:books_hardcover, :desk_calendars, :flyers].each do |factory|
+    [:books_hardcover, :desk_calendars, :flyers, :compliment_slips].each do |factory|
       it "#{factory.to_s} is valid" do
         expect(build(factory)).to be_valid
       end

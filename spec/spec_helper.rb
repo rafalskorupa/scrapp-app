@@ -23,7 +23,12 @@ RSpec.configure do |config|
     class FalseScrapper
       def data
         HashWithIndifferentAccess.new(
-            {"title"=>"Books with Hardcover", "price_net"=>"£2,840.48", "price_vat"=>"£568.10", "price_gross"=>"£3,408.58"}
+            {
+                "title"=>"Books with Hardcover",
+                "price_net"=>"£2,840.48",
+                "price_vat"=>"£568.10",
+                "price_gross"=>"£3,408.58"
+            }
         )
       end
     end
