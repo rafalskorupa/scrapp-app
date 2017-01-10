@@ -17,6 +17,21 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+
+  config.before(:each, type: :model) do
+    class FalseScrapper
+      def data
+        HashWithIndifferentAccess.new(
+            {"title"=>"Books with Hardcover", "price_net"=>"£2,840.48", "price_vat"=>"£568.10", "price_gross"=>"£3,408.58"}
+        )
+      end
+    end
+    allow(Scrapper).to receive(:new) {FalseScrapper.new}
+  end
+
+
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

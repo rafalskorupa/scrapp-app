@@ -4,6 +4,15 @@ class Page < ApplicationRecord
             presence: true,
             uniqueness: true,
             format: { with: /https:\/\/www.saxoprint.co.uk\/shop\/[a-z-]+/ }
+  after_save :update_data
+
+
+  def data
+    if page_data.last.created_at < 1.days.ago
+      update_data
+    end
+    page_data.last
+  end
 
 
   def self.sanitize(url)
@@ -16,6 +25,10 @@ class Page < ApplicationRecord
     end
 
     url
+  end
+
+  def update_data
+    page_data.create!(Scrapper.new(self.url).data)
   end
 
 end

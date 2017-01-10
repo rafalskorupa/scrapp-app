@@ -10,9 +10,6 @@ RSpec.describe Page, type: :model do
   let(:new_record){ create(:new_record, { page: books_hardcover } ) }
 
 
-
-
-
   INVALID_URLS = ['www.google.pl', 'www.colour.me', 'jenkyyylss']
 
   describe 'record validations' do
@@ -76,8 +73,17 @@ RSpec.describe Page, type: :model do
       [books_hardcover,old_record]
     }
 
-    it 'have 1 pagedatas' do
-      expect(books_hardcover.page_data.count).to eq 1
+    it 'have 2 pagedatas' do
+      expect(books_hardcover.page_data.count).to eq 2
+    end
+
+    it 'create new page data for old record' do
+      expect{books_hardcover.data}.to change{books_hardcover.page_data.count}.by 1
+    end
+
+    it 'do not create new page data for young record' do
+      new_record
+      expect{books_hardcover.data}.to_not change{books_hardcover.page_data.count}
     end
 
   end
