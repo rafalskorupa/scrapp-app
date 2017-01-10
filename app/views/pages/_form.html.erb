@@ -1,7 +1,10 @@
+<div id="errors">
+</div>
+
 <%= form_for(scrapper_index_path, remote: true) do |f| %>
 
-    <%= f.label :url %>:
-    <%= f.text_field :url %><br />
+    <%= f.label :url %>
+    <%= f.text_field :url, class: "u-full-width", placeholder: "https://www.saxoprint.co.uk/shop/[resource]" %><br />
 
-    <%= f.submit %>
+    <%= f.submit "Get data", class: "button-primary" %>
 <% end %>

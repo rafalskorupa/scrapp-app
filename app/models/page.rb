@@ -3,7 +3,8 @@ class Page < ApplicationRecord
   validates :url,
             presence: true,
             uniqueness: true,
-            format: { with: /https:\/\/www.saxoprint.co.uk\/shop\/[a-z-]+/ }
+            format: { with: /https:\/\/www.saxoprint.co.uk\/shop\/[a-z-]+/,
+                      message: "has to be from saxoprint.co.uk/shop/*" }
   after_save :update_data
 
 

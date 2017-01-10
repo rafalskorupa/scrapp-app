@@ -1,6 +1,35 @@
-<div id="page<%= page.id %>"></div>
-  <h2><%= page.data.title %></h2>
-
-  <p> Price Gross: <span><%= page.data.price_gross %></span></p>
+<div class="four columns page" id="page<%= page.id %>">
+  <%= link_to page.data.title, page.url, class: "button button-primary u-full-width" %>
+  <table class="u-full-width">
+    <tbody>
+      <tr>
+        <td>
+          Price Net
+        </td>
+        <td>
+          <%= page.data.price_net %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Price Vat
+        </td>
+        <td>
+          <%= page.data.price_vat %>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+          <th>
+            Price Gross
+          </th>
+          <th>
+            <%= page.data.price_gross %>
+          </th>
+        </tr>
+    </tfoot>
+  </table>
+  <%= link_to 'Remove', scrapper_path(id: page.id), method: :delete, remote: true, class: "button u-full-width" %>
 </div>
 

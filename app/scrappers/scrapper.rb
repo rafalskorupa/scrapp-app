@@ -10,10 +10,13 @@ class Scrapper
   Capybara.default_driver = :poltergeist
 
   def initialize(url)
+    time = Time.now
     Phantomjs.path
 
     visit url
-
+    puts
+    puts "=============== > Page rendered in #{Time.now-time} s"
+    puts
     @data = HashWithIndifferentAccess.new
     default_params.each do |key,value|
       @data.store(key, find(value).text)

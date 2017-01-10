@@ -1,5 +1,15 @@
-if (!$('#page<%= @page.id %>').length) {
+<% if @errors %>
+  $('#errors').html('<%= j render 'pages/errors', errors: @errors %>');
 
-  $('#pages').prepend('<%= j render @page %>');
+<% else %>
+  if (!$('#page<%= @page.id %>').length) {
 
-}
+    $('#pages').append('<%= j render @page %>');
+    $('#errors').html('');
+
+  }
+<% end %>
+
+
+
+

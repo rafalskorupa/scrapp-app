@@ -9,6 +9,28 @@
   </head>
 
   <body>
+  <div class="container">
+    <h1 align="center">Shell Scrapper</h1>
+    <div class="row">
+      <% if current_user %>
+          <div class="two columns u-pull-left button">
+            <%= current_user.level %>
+          </div>
+
+          <div class="two columns u-pull-right">
+            <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "button button-primary" %>
+          </div>
+
+      <% else %>
+          <div class="two columns u-pull-left">
+            <%= link_to 'Log in', new_user_session_path, class: "button"%>
+          </div>
+          <div class="two columns u-pull-right">
+            <%= link_to 'Register', new_user_registration_path, class: "button button-primary" %>
+          </div>
+      <% end %>
+      </div>
+
     <%= yield %>
   </body>
 </html>
