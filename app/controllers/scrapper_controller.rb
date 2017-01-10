@@ -5,13 +5,14 @@ class ScrapperController < ApplicationController
 
   def create
     url = Page.sanitize(params["/"][:url])
-    @page = Page.find_or_initialize_by(url: url)
+    @page = Page.find_or_create_by!(url: url)
 
-    if @page.save
+
+    if @page.valid?
       @errors = ["#{@page.slug} can be accessed by at least #{@page.access_level} users"] unless can_access(@page)
+    else
+      @errors = @page.errors
     end
-    @errors = @page.errors unless @page.save
-
 
   end
 
