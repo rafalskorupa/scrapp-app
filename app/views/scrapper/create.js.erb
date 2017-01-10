@@ -1,0 +1,5 @@
+if (!$('#page<%= @page.id %>').length) {
+
+  $('#pages').prepend('<%= j render @page %>');
+
+}

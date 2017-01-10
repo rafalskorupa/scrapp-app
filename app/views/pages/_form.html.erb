@@ -1,0 +1,7 @@
+<%= form_for(scrapper_index_path, remote: true) do |f| %>
+
+    <%= f.label :url %>:
+    <%= f.text_field :url %><br />
+
+    <%= f.submit %>
+<% end %>
